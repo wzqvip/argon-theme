@@ -176,7 +176,10 @@
 									echo "</div>";
 								}
 							?>
+							
+
 							<?php
+							
 								/*侧栏友情链接*/
 								class leftbarFriendLinksWalker extends Walker_Nav_Menu{
 									public function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
@@ -220,6 +223,21 @@
 								<?php dynamic_sidebar( 'leftbar-tools' ); ?>
 							</div>
 						<?php }?>
+
+						<div class="category-bubbles mb-3 px-3 text-left">
+								<?php
+									$categories = get_categories(array(
+									'orderby' => 'name',
+									'order' => 'ASC',
+									'hide_empty' => 0,
+									));
+									foreach ($categories as $category) {
+									echo "<a href='" . esc_url(get_category_link($category->term_id)) . "' class='badge badge-pill badge-primary mr-1 mb-1'>" .
+										esc_html($category->name) . " <span class='tag-num'>" . $category->count . "</span></a>";
+									}
+								?>
+								</div>
+								
 					</div>
 				</div>
 			</div>
